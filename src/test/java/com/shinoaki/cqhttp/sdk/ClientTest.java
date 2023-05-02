@@ -1,6 +1,8 @@
 package com.shinoaki.cqhttp.sdk;
 
-import com.shinoaki.cqhttp.sdk.message.WebSocketMessageServiceInterface;
+import com.shinoaki.cqhttp.sdk.websocket.WebSocketClient;
+import com.shinoaki.cqhttp.sdk.websocket.WebSocketServer;
+import com.shinoaki.cqhttp.sdk.websocket.message.WebSocketMessageServiceInterface;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PongWebSocketFrame;

@@ -1,4 +1,4 @@
-package com.shinoaki.cqhttp.sdk.message;
+package com.shinoaki.cqhttp.sdk.websocket.message;
 
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;

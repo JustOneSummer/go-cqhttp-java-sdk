@@ -1,6 +1,6 @@
-package com.shinoaki.cqhttp.sdk.server.handler;
+package com.shinoaki.cqhttp.sdk.websocket.server.handler;
 
-import com.shinoaki.cqhttp.sdk.message.WebSocketMessageServiceInterface;
+import com.shinoaki.cqhttp.sdk.websocket.message.WebSocketMessageServiceInterface;
 import io.netty.channel.*;
 import io.netty.handler.codec.http.FullHttpResponse;
 import io.netty.handler.codec.http.websocketx.*;

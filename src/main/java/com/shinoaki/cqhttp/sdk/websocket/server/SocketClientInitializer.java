@@ -1,7 +1,7 @@
-package com.shinoaki.cqhttp.sdk.server;
+package com.shinoaki.cqhttp.sdk.websocket.server;
 
-import com.shinoaki.cqhttp.sdk.message.WebSocketMessageServiceInterface;
-import com.shinoaki.cqhttp.sdk.server.handler.WebSocketClientHandler;
+import com.shinoaki.cqhttp.sdk.websocket.message.WebSocketMessageServiceInterface;
+import com.shinoaki.cqhttp.sdk.websocket.server.handler.WebSocketClientHandler;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelPipeline;
