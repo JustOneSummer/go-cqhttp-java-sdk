@@ -10,7 +10,6 @@ import io.netty.handler.codec.http.DefaultHttpHeaders;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpRequestEncoder;
 import io.netty.handler.codec.http.HttpResponseDecoder;
-import io.netty.handler.codec.http.websocketx.WebSocketClientHandshaker;
 import io.netty.handler.codec.http.websocketx.WebSocketClientHandshakerFactory;
 import io.netty.handler.codec.http.websocketx.WebSocketVersion;
 import io.netty.handler.ssl.SslContext;
@@ -26,8 +25,7 @@ public class SocketClientInitializer extends ChannelInitializer<SocketChannel> {
     private final SslContext sslContext;
     private final int maxContentLength;
     private final URI uri;
-    private final WebSocketClientHandshaker handshaker;
-    private final WebSocketMessageServiceInterface webSocketMessageServiceInterface;
+
     private final WebSocketClientHandler webSocketClientHandler;
 
     public SocketClientInitializer(SslContext sslContext, URI uri, WebSocketMessageServiceInterface webSocketMessageServiceInterface) {
@@ -35,9 +33,9 @@ public class SocketClientInitializer extends ChannelInitializer<SocketChannel> {
         this.uri = uri;
         this.maxContentLength = MAX_CONTENT_LENGTH;
         // 添加 WebSocket 协议支持
-        this.handshaker = WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders());
-        this.webSocketMessageServiceInterface = webSocketMessageServiceInterface;
-        this.webSocketClientHandler = new WebSocketClientHandler(this.handshaker, this.webSocketMessageServiceInterface);
+        this.webSocketClientHandler = new WebSocketClientHandler(
+                WebSocketClientHandshakerFactory.newHandshaker(uri, WebSocketVersion.V13, null, true, new DefaultHttpHeaders()),
+                webSocketMessageServiceInterface);
     }
 
     @Override
@@ -54,7 +52,7 @@ public class SocketClientInitializer extends ChannelInitializer<SocketChannel> {
         // 添加 HTTP 请求编码器
         pipeline.addLast(new HttpRequestEncoder());
         //处理通道
-        pipeline.addLast();
+        pipeline.addLast(this.webSocketClientHandler);
     }
 
     public ChannelFuture handshakeFuture() {
