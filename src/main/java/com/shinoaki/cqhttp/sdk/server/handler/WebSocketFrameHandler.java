@@ -54,6 +54,6 @@ public class WebSocketFrameHandler extends SimpleChannelInboundHandler<WebSocket
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
         super.exceptionCaught(ctx, cause);
-        log.info("websocket异常!", cause);
+        log.error("websocket异常!", cause);
     }
 }
