@@ -7,6 +7,7 @@ import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PongWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import org.junit.Test;
 
 import javax.net.ssl.SSLException;
 import java.net.URI;
@@ -16,7 +17,8 @@ import java.net.URI;
  * @date 2023/5/2 18:04 星期二
  */
 public class ClientTest {
-    public static void main(String[] args) throws InterruptedException, SSLException {
+    @Test
+    public void test() throws InterruptedException, SSLException {
         WebSocketServer server = new WebSocketServer(new WebSocketMessageServiceInterface() {
             @Override
             public void message(TextWebSocketFrame frame) {
@@ -62,5 +64,9 @@ public class ClientTest {
         });
         client.start(URI.create("ws://127.0.0.1:8899"));
         client.sendTextMessage("超级测试2222333");
+        Thread.sleep(1000);
+        client.closeConnect();
+        client.close();
+        server.close();
     }
 }

@@ -6,13 +6,15 @@ import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PongWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
+import org.junit.Test;
 
 /**
  * @author Xun
  * @date 2023/5/2 17:58 星期二
  */
 public class ServerTest {
-    public static void main(String[] args) throws InterruptedException {
+    @Test
+    public void serverTest() throws InterruptedException {
         WebSocketServer server = new WebSocketServer(new WebSocketMessageServiceInterface() {
             @Override
             public void message(TextWebSocketFrame frame) {
@@ -35,5 +37,6 @@ public class ServerTest {
             }
         });
         server.start(8899);
+        server.close();
     }
 }
