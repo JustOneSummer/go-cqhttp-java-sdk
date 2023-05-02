@@ -10,6 +10,15 @@ import java.util.List;
 public class MessageNode {
     private final List<MetaMessage> messageList = new ArrayList<>();
 
+    /**
+     * 获取解码后的raw消息文本
+     *
+     * @return 消息文本
+     */
+    public String getRawDecodeData() {
+        return toString();
+    }
+
     public static MessageNode analyze(String rawMessage) {
         String[] split = rawMessage.split("\\[");
         MessageNode node = new MessageNode();
