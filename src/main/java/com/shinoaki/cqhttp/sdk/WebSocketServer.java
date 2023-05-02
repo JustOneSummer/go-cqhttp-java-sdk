@@ -14,14 +14,14 @@ import org.slf4j.LoggerFactory;
  * @author Xun
  * @date 2023/5/2 17:05 星期二
  */
-public class WebSocketService {
-    private static final Logger log = LoggerFactory.getLogger(WebSocketService.class);
+public class WebSocketServer {
+    private static final Logger log = LoggerFactory.getLogger(WebSocketServer.class);
     private SocketServerInitializer socketServerInitializer;
     private final EventLoopGroup serverGroup = new NioEventLoopGroup();
     private final EventLoopGroup workerGroup = new NioEventLoopGroup();
     private final WebSocketMessageServiceInterface webSocketMessageServiceInterface;
 
-    public WebSocketService(WebSocketMessageServiceInterface webSocketMessageServiceInterface) {
+    public WebSocketServer(WebSocketMessageServiceInterface webSocketMessageServiceInterface) {
         this.webSocketMessageServiceInterface = webSocketMessageServiceInterface;
     }
 
