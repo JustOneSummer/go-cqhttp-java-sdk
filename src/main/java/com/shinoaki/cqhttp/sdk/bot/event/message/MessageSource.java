@@ -2,8 +2,9 @@ package com.shinoaki.cqhttp.sdk.bot.event.message;
 
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.shinoaki.wows.bot.wowsbot.bot.event.MetaSource;
+import com.shinoaki.cqhttp.sdk.bot.event.MetaSource;
 
+import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
@@ -71,6 +72,18 @@ public abstract class MessageSource extends MetaSource {
                 .add("selfId=" + selfId)
                 .add("postType='" + postType + "'")
                 .toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MessageSource that)) return false;
+        return getFont() == that.getFont() && Objects.equals(getMessageType(), that.getMessageType()) && Objects.equals(getSubType(), that.getSubType()) && Objects.equals(getMessageId(), that.getMessageId()) && Objects.equals(getUserId(), that.getUserId()) && Objects.equals(getMessage(), that.getMessage()) && Objects.equals(getRawMessage(), that.getRawMessage()) && Objects.equals(getSender(), that.getSender());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getMessageType(), getSubType(), getMessageId(), getUserId(), getMessage(), getRawMessage(), getFont(), getSender());
     }
 
     public String getMessageType() {

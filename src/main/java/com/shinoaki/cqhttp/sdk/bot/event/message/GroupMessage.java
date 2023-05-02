@@ -1,8 +1,6 @@
 package com.shinoaki.cqhttp.sdk.bot.event.message;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.shinoaki.wows.api.utils.DateUtils;
-import com.shinoaki.wows.bot.wowsbot.bot.model.sender.SenderMessage;
 
 import java.util.StringJoiner;
 
@@ -25,20 +23,6 @@ public class GroupMessage extends MessageSource {
     @JsonAlias(value = {"anonymous"})
     private Object anonymous;
 
-
-    public void sendMessageCq(String cqMessage) {
-        Message m = new Message(groupId, cqMessage, true);
-        SenderMessage<Message> message = new SenderMessage<>("send_group_msg"
-                , m, String.valueOf(DateUtils.toEpochMilli()));
-        this.sendMessage(message);
-    }
-
-    public void sendMessageText(String text) {
-        Message m = new Message(groupId, text, false);
-        SenderMessage<Message> message = new SenderMessage<>("send_group_msg"
-                , m, String.valueOf(DateUtils.toEpochMilli()));
-        this.sendMessage(message);
-    }
 
     private record Message(long group_id, String message, boolean auto_escape) {
     }

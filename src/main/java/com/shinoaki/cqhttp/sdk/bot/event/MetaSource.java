@@ -1,9 +1,6 @@
 package com.shinoaki.cqhttp.sdk.bot.event;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
-import com.shinoaki.wows.api.codec.JsonUtils;
-import com.shinoaki.wows.bot.wowsbot.bot.model.sender.SenderMessage;
-import com.shinoaki.wows.bot.wowsbot.websocket.server.handler.ChannelEventsHandler;
 import io.netty.channel.ChannelId;
 
 /**
@@ -28,10 +25,6 @@ public abstract class MetaSource {
      */
     @JsonAlias(value = {"post_type"})
     protected String postType;
-
-    public <T> void sendMessage(SenderMessage<T> message) {
-        ChannelEventsHandler.sendMsg(channelId, JsonUtils.toJson(message));
-    }
 
     public long getTime() {
         return time;
