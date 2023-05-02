@@ -27,6 +27,7 @@ public class WebSocketServer {
 
     public void start(int port, String... path) throws InterruptedException {
         if (socketServerInitializer == null) {
+            path = path.length == 0 ? new String[]{"/"} : path;
             this.socketServerInitializer = new SocketServerInitializer(this.webSocketMessageServiceInterface, path);
             ServerBootstrap bootstrap = new ServerBootstrap();
             bootstrap.group(serverGroup, workerGroup).channel(NioServerSocketChannel.class).childHandler(this.socketServerInitializer).bind(port).sync();
