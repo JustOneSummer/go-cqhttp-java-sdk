@@ -51,10 +51,10 @@ public class WebSocketClientHandler extends SimpleChannelInboundHandler<Object> 
         } else {
             WebSocketFrame frame = (WebSocketFrame) msg;
             switch (frame) {
-                case TextWebSocketFrame data -> this.webSocketMessageServiceInterface.message(data);
-                case BinaryWebSocketFrame data -> this.webSocketMessageServiceInterface.message(data);
-                case PingWebSocketFrame data -> this.webSocketMessageServiceInterface.message(data);
-                case PongWebSocketFrame data -> this.webSocketMessageServiceInterface.message(data);
+                case TextWebSocketFrame data -> this.webSocketMessageServiceInterface.message(ctx.channel().id(), data);
+                case BinaryWebSocketFrame data -> this.webSocketMessageServiceInterface.message(ctx.channel().id(), data);
+                case PingWebSocketFrame data -> this.webSocketMessageServiceInterface.message(ctx.channel().id(), data);
+                case PongWebSocketFrame data -> this.webSocketMessageServiceInterface.message(ctx.channel().id(), data);
                 default -> throw new UnsupportedOperationException("unsupported frame type: " + frame.getClass().getName());
             }
         }

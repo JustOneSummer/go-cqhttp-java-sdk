@@ -3,6 +3,7 @@ package com.shinoaki.cqhttp.sdk;
 import com.shinoaki.cqhttp.sdk.websocket.WebSocketClient;
 import com.shinoaki.cqhttp.sdk.websocket.WebSocketServer;
 import com.shinoaki.cqhttp.sdk.websocket.message.WebSocketMessageServiceInterface;
+import io.netty.channel.ChannelId;
 import io.netty.handler.codec.http.websocketx.BinaryWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PingWebSocketFrame;
 import io.netty.handler.codec.http.websocketx.PongWebSocketFrame;
@@ -21,44 +22,44 @@ public class ClientTest {
     public void test() throws InterruptedException, SSLException {
         WebSocketServer server = new WebSocketServer(new WebSocketMessageServiceInterface() {
             @Override
-            public void message(TextWebSocketFrame frame) {
+            public void message(ChannelId channelId, TextWebSocketFrame frame) {
                 System.out.println("收到消息:" + frame.text());
             }
 
             @Override
-            public void message(BinaryWebSocketFrame frame) {
+            public void message(ChannelId channelId, BinaryWebSocketFrame frame) {
 
             }
 
             @Override
-            public void message(PingWebSocketFrame frame) {
+            public void message(ChannelId channelId, PingWebSocketFrame frame) {
 
             }
 
             @Override
-            public void message(PongWebSocketFrame frame) {
+            public void message(ChannelId channelId, PongWebSocketFrame frame) {
 
             }
         });
         server.start(8899);
         WebSocketClient client = new WebSocketClient(new WebSocketMessageServiceInterface() {
             @Override
-            public void message(TextWebSocketFrame frame) {
+            public void message(ChannelId channelId, TextWebSocketFrame frame) {
                 System.out.println("收到消息:" + frame.text());
             }
 
             @Override
-            public void message(BinaryWebSocketFrame frame) {
+            public void message(ChannelId channelId, BinaryWebSocketFrame frame) {
 
             }
 
             @Override
-            public void message(PingWebSocketFrame frame) {
+            public void message(ChannelId channelId, PingWebSocketFrame frame) {
 
             }
 
             @Override
-            public void message(PongWebSocketFrame frame) {
+            public void message(ChannelId channelId, PongWebSocketFrame frame) {
 
             }
         });

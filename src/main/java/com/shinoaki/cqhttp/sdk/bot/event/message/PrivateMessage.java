@@ -2,6 +2,7 @@ package com.shinoaki.cqhttp.sdk.bot.event.message;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
+import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
@@ -40,5 +41,18 @@ public class PrivateMessage extends MessageSource {
 
     public void setTempSource(int tempSource) {
         this.tempSource = tempSource;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof PrivateMessage that)) return false;
+        if (!super.equals(o)) return false;
+        return getTempSource() == that.getTempSource();
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getTempSource());
     }
 }

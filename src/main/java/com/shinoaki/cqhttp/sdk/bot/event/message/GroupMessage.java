@@ -2,6 +2,7 @@ package com.shinoaki.cqhttp.sdk.bot.event.message;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 
+import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
@@ -59,5 +60,18 @@ public class GroupMessage extends MessageSource {
 
     public void setAnonymous(Object anonymous) {
         this.anonymous = anonymous;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof GroupMessage that)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(getGroupId(), that.getGroupId()) && Objects.equals(getAnonymous(), that.getAnonymous());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), getGroupId(), getAnonymous());
     }
 }
